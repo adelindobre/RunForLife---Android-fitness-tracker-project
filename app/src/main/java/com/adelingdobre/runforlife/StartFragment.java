@@ -345,14 +345,20 @@ public class StartFragment extends Fragment implements OnMapReadyCallback {
     public boolean checkProfile(){
         User user = usersDB.getUserByEmail(usermail);
 
-        if((user.getWeight().compareTo("") == 0) || (user.getHeight().compareTo("") == 0) ||
-                (user.getAge().compareTo("") == 0) || (user.getHeartRate().compareTo("") == 0) ||
-                (user.getGender().compareTo("") == 0))
-        {
+        if(user.getWeight() == null || user.getHeight() == null ||
+                user.getAge() == null || user.getHeartRate() == null || user.getGender() == null){
             toastIt("Complete your profile before starting");
             return false;
-        }else
-            return true;
+        }
+
+        if((user.getWeight().compareTo("") == 0) || (user.getHeight().compareTo("") == 0) ||
+                (user.getAge().compareTo("") == 0) || (user.getHeartRate().compareTo("") == 0) ||
+                (user.getGender().compareTo("") == 0)) {
+            toastIt("Complete your profile before starting");
+            return false;
+        }
+
+        return true;
     }
 
     public void getInitialData(Bundle args){
