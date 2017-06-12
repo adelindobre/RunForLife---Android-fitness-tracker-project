@@ -1,0 +1,45 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/app_primary_dark</item>
+        <item name="colorPrimaryDark">@color/grey_1000</item>
+        <item name="colorAccent">@color/app_primary</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">@color/textColorPrimary</item>
+        <item name="tabBackground">@color/app_primary</item>
+    </style>
+    <style name="TextAppearanceLargeNumbers" parent="@android:style/TextAppearance.Large">
+        <item name="android:textColor">@color/textColorPrimary</item>
+        <item name="android:textSize">@dimen/TextAppearanceLargeNumbersSize</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearanceLargeUM" parent="@android:style/TextAppearance.Small">
+        <item name="android:textColor">@color/textColorPrimary</item>
+        <item name="android:textSize">@dimen/TextAppearanceTextUMSize</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="ProgressBarCard" parent="@android:style/Widget.ProgressBar.Horizontal">
+        <item name="android:layout_marginBottom">3dp</item>
+        <item name="android:layout_marginTop">3dp</item>
+        <item name="android:minHeight">1.7dp</item>
+        <item name="android:maxHeight">1.7dp</item>
+        <item name="android:progressDrawable">@drawable/progress</item>
+    </style>
+
+    <style name="TextAppearanceCardSmall" parent="@android:style/TextAppearance.Small">
+        <item name="android:textSize">@dimen/TextAppearanceSmallTextSize</item>
+    </style>
+
+
+</resources>

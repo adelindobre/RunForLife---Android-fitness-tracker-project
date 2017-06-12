@@ -1,0 +1,190 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorBackground"
+    tools:context="com.adelingdobre.runforlife.RunningFragment">
+
+    <TextView
+        android:id="@+id/surface_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/running_surface_text"
+        android:textColor="@color/textColorPrimary"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="15dp"/>
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view1"
+        android:layout_below="@+id/surface_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardBackgroundColor="@color/colorCardTrackBackground"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        card_view:cardUseCompatPadding="false">
+
+        <RelativeLayout
+            android:id="@+id/surface_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp">
+
+            <Spinner
+                android:id="@+id/surfaceSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:backgroundTint="@color/app_primary"
+                android:popupBackground="@color/colorTrackBackground" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+    <RelativeLayout
+        android:id="@+id/running_section"
+        android:layout_below="@+id/card_view1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:id="@+id/distance_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/running_distance_text"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="15dp"/>
+
+        <EditText
+            android:id="@+id/distance_info"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@+id/distance_text"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/rounded_edit_text"
+            android:hint="Distance in kilometers"
+            android:inputType="number"
+            android:textAlignment="textStart"
+            android:textColor="@color/textColorSecondary"
+            android:textColorHint="@color/textColorSecondary"
+            android:textSize="15dp"
+            android:ems="10" >
+            <requestFocus />
+        </EditText>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/time_section"
+        android:layout_below="@+id/running_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:id="@+id/time_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/time_text"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="15dp"/>
+
+        <EditText
+            android:id="@+id/time_info"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@+id/time_text"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/rounded_edit_text"
+            android:hint="Time in minutes"
+            android:inputType="number"
+            android:textAlignment="textStart"
+            android:textColor="@color/textColorSecondary"
+            android:textColorHint="@color/textColorSecondary"
+            android:textSize="15dp"
+            android:ems="10" >
+            <requestFocus />
+        </EditText>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/time_section"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:id="@+id/treadmill_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/treadmill"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="15dp"/>
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view2"
+            android:layout_below="@+id/treadmill_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            card_view:cardBackgroundColor="@color/colorCardTrackBackground"
+            android:layout_marginTop="5dp"
+            card_view:cardUseCompatPadding="false">
+
+            <RelativeLayout
+                android:id="@+id/treadmill_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+
+                <Spinner
+                    android:id="@+id/treadmillSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:backgroundTint="@color/app_primary"
+                    android:popupBackground="@color/colorTrackBackground" />
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:id="@+id/run_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/activity_button"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="10dp"
+            android:text="@string/run_button"
+            android:textColor="@color/textColorPrimary"
+            android:textStyle="bold"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

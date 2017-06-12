@@ -1,0 +1,378 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorBackground"
+    tools:context="com.adelingdobre.runforlife.ProfileFragment">
+
+        <ScrollView
+            android:id="@+id/scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:fillViewport="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.v7.widget.CardView
+                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/card_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    card_view:cardBackgroundColor="@color/colorCardTrackBackground"
+                    card_view:cardCornerRadius="2dp"
+                    card_view:cardElevation="3dp"
+                    card_view:cardUseCompatPadding="true">
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:id="@+id/header"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:baselineAligned="false"
+                            android:orientation="horizontal">
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <com.facebook.drawee.view.SimpleDraweeView
+                                    android:id="@+id/imageProfile"
+                                    android:layout_width="120dp"
+                                    android:layout_height="120dp"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_weight="0.20"
+                                    android:focusable="true"
+                                    android:focusableInTouchMode="true"
+                                    fresco:actualImageScaleType="focusCrop"
+                                    fresco:roundAsCircle="true">
+
+                                    <requestFocus />
+                                </com.facebook.drawee.view.SimpleDraweeView>
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/name_info"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="83dp"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_centerVertical="true"
+                                    android:gravity="center"
+                                    android:text="@string/name_info"
+                                    android:textAlignment="center"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                                    android:textColor="@color/textColorPrimary"
+                                    android:textSize="20sp"></TextView>
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                        <ProgressBar
+                            android:id="@+id/id_progressBar_card1"
+                            style="@style/ProgressBarCard"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/header"
+                            android:max="100"
+                            android:progress="0" />
+
+                        <RelativeLayout
+                            android:id="@+id/email_section"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/id_progressBar_card1"
+                            android:layout_margin="10dp">
+
+                            <TextView
+                                android:id="@+id/email_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/email"
+                                android:textColor="@color/textColorPrimary" />
+
+                            <TextView
+                                android:id="@+id/email_info"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/email_text"
+                                android:hint="@string/email_info"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:textColor="@color/textColorSecondary"></TextView>
+
+                        </RelativeLayout>
+
+                        <ProgressBar
+                            android:id="@+id/id_progressBar_card2"
+                            style="@style/ProgressBarCard"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/email_section"
+                            android:indeterminate="true"
+                            android:indeterminateTint="@color/colorCardBackground"
+                            android:max="100"
+                            android:progress="0" />
+
+                        <RelativeLayout
+                            android:id="@+id/weight_section"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/id_progressBar_card2"
+                            android:layout_margin="10dp">
+
+                            <TextView
+                                android:id="@+id/weight_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/weight"
+                                android:textColor="@color/textColorPrimary" />
+
+                            <EditText
+                                android:id="@+id/weight_info"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="-10dp"
+                                android:layout_marginBottom="-10dp"
+                                android:layout_marginLeft="-5dp"
+                                android:layout_below="@+id/weight_text"
+                                android:backgroundTint="@android:color/transparent"
+                                android:hint="@string/weight_info"
+                                android:inputType="number"
+                                android:textAlignment="textStart"
+                                android:textColor="@color/textColorSecondary"
+                                android:textColorHint="@color/textColorSecondary"
+                                android:textSize="15sp"></EditText>
+
+                        </RelativeLayout>
+
+                        <ProgressBar
+                            android:id="@+id/id_progressBar_card3"
+                            style="@style/ProgressBarCard"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/weight_section"
+                            android:max="100"
+                            android:progress="0"
+                            android:indeterminate="true"
+                            android:indeterminateTint="@color/colorCardBackground"/>
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:id="@+id/height_section"
+                            android:layout_below="@+id/id_progressBar_card3">
+
+                            <TextView
+                                android:id="@+id/height_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/height"
+                                android:textColor="@color/textColorPrimary"/>
+
+                            <EditText
+                                android:id="@+id/height_info"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="-10dp"
+                                android:layout_marginBottom="-10dp"
+                                android:layout_marginLeft="-5dp"
+                                android:layout_below="@+id/height_text"
+                                android:backgroundTint="@android:color/transparent"
+                                android:hint="@string/height_info"
+                                android:inputType="number"
+                                android:textAlignment="textStart"
+                                android:textColor="@color/textColorSecondary"
+                                android:textColorHint="@color/textColorSecondary"
+                                android:textSize="15dp"></EditText>
+
+                        </RelativeLayout>
+
+                        <ProgressBar
+                            android:id="@+id/id_progressBar_card4"
+                            style="@style/ProgressBarCard"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/height_section"
+                            android:indeterminate="true"
+                            android:indeterminateTint="@color/colorCardBackground"
+                            android:max="100"
+                            android:progress="0" />
+
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:id="@+id/age_section"
+                            android:layout_below="@+id/id_progressBar_card4">
+
+                            <TextView
+                                android:id="@+id/age_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/age"
+                                android:textColor="@color/textColorPrimary" />
+
+                            <EditText
+                                android:id="@+id/age_info"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/age_text"
+                                android:layout_marginTop="-10dp"
+                                android:layout_marginBottom="-10dp"
+                                android:layout_marginLeft="-5dp"
+                                android:backgroundTint="@android:color/transparent"
+                                android:hint="@string/age_info"
+                                android:inputType="number"
+                                android:textColor="@color/textColorSecondary"
+                                android:textColorHint="@color/textColorSecondary"
+                                android:textAlignment="textStart"
+                                android:textSize="15dp"></EditText>
+
+                        </RelativeLayout>
+
+                        <ProgressBar
+                            android:id="@+id/id_progressBar_card5"
+                            style="@style/ProgressBarCard"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/age_section"
+                            android:max="100"
+                            android:progress="0"
+                            android:indeterminate="true"
+                            android:indeterminateTint="@color/colorCardBackground"/>
+
+                        <RelativeLayout
+                            android:id="@+id/heartRate_section"
+                            android:layout_below="@+id/id_progressBar_card5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp">
+
+                            <TextView
+                                android:id="@+id/heartRate_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/heartRate"
+                                android:textColor="@color/textColorPrimary" />
+
+                            <EditText
+                                android:id="@+id/heartRate_info"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/heartRate_text"
+                                android:layout_marginTop="-10dp"
+                                android:layout_marginBottom="-10dp"
+                                android:layout_marginLeft="-5dp"
+                                android:backgroundTint="@android:color/transparent"
+                                android:hint="@string/heartRate_info"
+                                android:inputType="number"
+                                android:textColor="@color/textColorSecondary"
+                                android:textColorHint="@color/textColorSecondary"
+                                android:textAlignment="textStart"
+                                android:textSize="15dp">
+                            </EditText>
+
+                        </RelativeLayout>
+
+                        <ProgressBar
+                            android:id="@+id/id_progressBar_card6"
+                            style="@style/ProgressBarCard"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/heartRate_section"
+                            android:indeterminate="true"
+                            android:indeterminateTint="@color/colorCardBackground"
+                            android:max="100"
+                            android:progress="0" />
+
+                        <RelativeLayout
+                            android:id="@+id/gender_section"
+                            android:layout_below="@+id/id_progressBar_card6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp">
+
+                            <TextView
+                                android:id="@+id/gender_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/gender"
+                                android:textColor="@color/textColorPrimary" />
+
+                            <RadioGroup
+                                android:id="@+id/radioGender"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="30dp"
+                                android:layout_marginRight="30dp"
+                                android:layout_marginBottom="40dp"
+                                android:orientation="horizontal"
+                                android:layout_marginTop="5dp"
+                                android:layout_below="@+id/gender_text"
+                                android:layout_centerHorizontal="true">
+
+                                <RadioButton
+                                    android:id="@+id/female_button"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="100dp"
+                                    android:buttonTint="@color/app_primary"
+                                    android:text="@string/female_button"
+                                    android:textColor="@color/textColorPrimary" />
+
+                                <RadioButton
+                                    android:id="@+id/male_button"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:buttonTint="@color/app_primary"
+                                    android:text="@string/male_button"
+                                    android:textColor="@color/textColorPrimary" />
+
+                            </RadioGroup>
+
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+            </RelativeLayout>
+
+        </ScrollView>
+
+    <Button
+        android:id="@+id/save_button"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/save_button"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>
+
+

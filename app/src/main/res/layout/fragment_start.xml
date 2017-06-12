@@ -1,0 +1,265 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.adelingdobre.runforlife.StartFragment">
+
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.adelingdobre.runforlife.MainActivity"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/relativeLayout1">
+
+        <Button
+            android:id="@+id/controlButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_corner_blue"
+            android:textColor="#ffffff"/>
+
+    </RelativeLayout>
+
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:baselineAligned="false"
+        android:layout_above="@+id/relativeLayout1"
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout1">
+
+        <TableLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/current_speed"
+            android:layout_margin="3dp"
+            android:background="@drawable/rounded_corner_dark"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:layout_weight="1">
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearanceLargeNumbers"
+                    android:id="@+id/currentVelocityView"
+                    android:text="@string/currentVelocity_dummy"
+                    android:freezesText="true"
+                    android:textStyle="bold"
+                    android:gravity="center_horizontal" />
+
+            </TableRow>
+
+            <TextView
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#ffffff"
+                android:text="@string/currentVelocity"
+                android:id="@+id/currentVelocityText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:gravity="center_horizontal" />
+
+        </TableLayout>
+
+        <TableLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/distance"
+            android:layout_margin="3dp"
+            android:background="@drawable/rounded_corner_dark"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:layout_weight="1">
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearanceLargeNumbers"
+                    android:id="@+id/distanceView"
+                    android:text="@string/distance_dummy"
+                    android:freezesText="true"
+                    android:textStyle="bold"
+                    android:gravity="center_horizontal" />
+
+            </TableRow>
+
+            <TextView
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/distance"
+                android:id="@+id/distanceText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:gravity="center_horizontal"
+                android:textColor="#ffffff"/>
+
+        </TableLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:baselineAligned="false"
+        android:id="@+id/linearLayout2"
+        android:layout_above="@+id/linearLayout1"
+        android:layout_alignParentStart="true">
+
+        <TableLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/duration"
+            android:layout_margin="3dp"
+            android:background="@drawable/rounded_corner_dark"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:layout_weight="1">
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearanceLargeNumbers"
+                    android:id="@+id/durationView"
+                    android:text="@string/duration_dummy"
+                    android:freezesText="true"
+                    android:textStyle="bold"
+                    android:gravity="center_horizontal" />
+
+            </TableRow>
+
+            <TextView
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#ffffff"
+                android:text="@string/duration"
+                android:id="@+id/durationText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:gravity="center_horizontal" />
+
+        </TableLayout>
+
+        <TableLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/calories"
+            android:layout_margin="3dp"
+            android:background="@drawable/rounded_corner_dark"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:layout_weight="1">
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal" >
+
+                <TextView
+                    android:id="@+id/caloriesBurnedView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:freezesText="true"
+                    android:text="@string/calories_dummy"
+                    android:textAppearance="@style/TextAppearanceLargeNumbers"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/caloriesEstimatedView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:freezesText="true"
+                    android:text="@string/calories_dummy"
+                    android:textAppearance="@style/TextAppearanceLargeNumbers"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal" >
+
+                <TextView
+                    android:id="@+id/burnedText"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:text="Burned"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="#ffffff"
+                    android:textSize="8dp" />
+
+                <TextView
+                    android:id="@+id/estimatedText"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:text="Estimated"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="#ffffff"
+                    android:textSize="8dp" />
+
+            </TableRow>
+
+            <TextView
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/calories"
+                android:id="@+id/caloriesText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:gravity="center_horizontal"
+                android:textColor="#ffffff"/>
+
+        </TableLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
