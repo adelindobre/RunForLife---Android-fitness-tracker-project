@@ -97,6 +97,7 @@
     <string name="distance_text">Walk Distance</string>
     <string name="running_distance_text">Run Distance</string>
     <string name="time_text">Walk Time</string>
+    <string name="gpx_text">Upload a route (optionally)</string>
     <string name="walk_button">GO FOR A WALK</string>
     <string name="run_button">GO FOR A RUN</string>
     <string name="treadmill">On Treadmill?</string>
@@ -122,7 +123,7 @@
         <item>13% Incline</item>
         <item>14% Incline</item>
         <item>15% Incline</item>
-        <item>16% Incline</item>
+        <item>No need</item>
     </string-array>
     <string-array name = "run_surface">
         <item>20% Decline</item>
@@ -161,6 +162,7 @@
         <item>13% Incline</item>
         <item>14% Incline</item>
         <item>15% Incline</item>
+        <item>No need</item>
     </string-array>
     <string-array name="treadmill">
         <item>Yes</item>

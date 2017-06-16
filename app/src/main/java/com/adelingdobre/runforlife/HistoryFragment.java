@@ -22,6 +22,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 
@@ -125,6 +126,7 @@ public class HistoryFragment extends Fragment
         mListView.setOnItemClickListener(this);
         mListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
         mListView.setMultiChoiceModeListener(this);
+
         return view;
     }
 
@@ -156,10 +158,10 @@ public class HistoryFragment extends Fragment
         int year = args.getInt("spinner_selection_year");
         int month = args.getInt("spinner_selection_month");
         Calendar calendar = Calendar.getInstance();
-        if (year != 0){
+        if (year != 0) {
             calendar.set(Calendar.YEAR, year);
         }
-        if (month != 0){
+        if (month != 0) {
             calendar.set(Calendar.MONTH, month);
         }
         calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMinimum(Calendar.DAY_OF_MONTH));
@@ -238,5 +240,10 @@ public class HistoryFragment extends Fragment
             intent.putExtra("run_ids", runIds);
             startActivity(intent);
         }
+    }
+
+    private void toastIt(String message){
+        Toast.makeText(getActivity(), message,
+                Toast.LENGTH_SHORT).show();
     }
 }

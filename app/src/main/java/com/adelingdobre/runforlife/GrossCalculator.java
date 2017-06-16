@@ -6,7 +6,7 @@ package com.adelingdobre.runforlife;
 
 public class GrossCalculator {
     public double netCalories;
-    public double duration;
+    public double duration; //minutes
     public String gender;
     public double age;
     public double weight;
@@ -22,6 +22,7 @@ public class GrossCalculator {
     }
 
     public void setCurrentParameters(double duration, double netCalories){
+        //duration in minutes
         this.netCalories = netCalories;
         this.duration = duration;
     }

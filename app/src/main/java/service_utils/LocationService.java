@@ -11,6 +11,7 @@ import android.location.LocationProvider;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 
@@ -121,8 +122,10 @@ public class LocationService extends Service implements LocationListener {
 
     private void updateRun(long runId){
         currentRun = dbWrite.updateRun(runId, dbRead);
+        double heightInterval = currentRun.ascendInterval + currentRun.descendInterval;
         runBundle.putDouble("distance", currentRun.distance);
         runBundle.putLong("timeInterval", currentRun.timeInterval);
+        runBundle.putDouble("heightInterval", heightInterval);
     }
 
     private long storeRun(Run run){

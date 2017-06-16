@@ -31,8 +31,19 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
-import java.util.ArrayList;
+import org.gavaghan.geodesy.Ellipsoid;
+import org.gavaghan.geodesy.GeodeticCalculator;
+import org.gavaghan.geodesy.GlobalPosition;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import io.ticofab.androidgpxparser.parser.GPXParser;
+import io.ticofab.androidgpxparser.parser.domain.Gpx;
+import io.ticofab.androidgpxparser.parser.domain.Track;
+import io.ticofab.androidgpxparser.parser.domain.TrackPoint;
+import io.ticofab.androidgpxparser.parser.domain.TrackSegment;
+import utils.LineColors;
 import utils.User;
 import utils.UsersDB;
 import utils.ValueFormatter;
@@ -60,7 +71,11 @@ public class StartFragment extends Fragment implements OnMapReadyCallback {
     WalkingCalculator walk_calculator;
     RunningCalculator run_calculator;
     boolean details_received = false;
+    boolean inital_route_drawn = false; //pt desenarea traseului din fisierul gpx
+    boolean first_time_current_drawing = false; //pt golirea hartii la start-ul GPS-ului
     UsersDB usersDB;
+    static GPXParser mParser = new GPXParser();
+    static Gpx parsedGpx = null;
 
     public interface OnButtonPressed {
         public void onRegisteredRun();
@@ -93,7 +108,7 @@ public class StartFragment extends Fragment implements OnMapReadyCallback {
         vf = new ValueFormatter(drawAct.getApplicationContext());
         waypoints = new ArrayList<>();
 
-        usersDB = MainActivity.usersDB;
+        usersDB = new UsersDB(getActivity());
         walk_calculator = new WalkingCalculator();
         run_calculator = new RunningCalculator();
     }
@@ -125,6 +140,7 @@ public class StartFragment extends Fragment implements OnMapReadyCallback {
                     } else {
                         StartFragment.this.drawAct.stopLocationService();
                         button.setText(getString(R.string.start));
+                        mcallback.onRegisteredRun();
                     }
                 }
             }
@@ -206,6 +222,7 @@ public class StartFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         gMap = googleMap;
+
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
             //Enable button to show "my location" (using GMaps API v2)
@@ -213,6 +230,31 @@ public class StartFragment extends Fragment implements OnMapReadyCallback {
         } else {
             ActivityCompat.requestPermissions(getActivity(),
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 0);
+        }
+        if(first_time_current_drawing){
+            gMap.clear();
+            first_time_current_drawing = false;
+        }
+        if(inital_route_drawn){
+            gMap.clear();
+            LatLng first = null;
+            ArrayList<LatLng> waypoints = getInitalPointsGpx();
+
+            if(waypoints.size() > 0){
+                first = waypoints.get(0);
+            }
+
+            PolylineOptions options = new PolylineOptions()
+                    .width(5)
+                    .color(LineColors.getColor(2))
+                    .addAll(waypoints);
+            gMap.addPolyline(options);
+
+            if (first != null){
+                CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(first, 14.0f);
+                gMap.animateCamera(cameraUpdate);
+            }
+            inital_route_drawn = false;
         }
         //Create PolylineOptions with a 25px thick, blue line
         plOpt = new PolylineOptions()
@@ -249,7 +291,6 @@ public class StartFragment extends Fragment implements OnMapReadyCallback {
 
     protected void update(Bundle updatedRun){
         button.setText(R.string.stop);
-        mcallback.onRegisteredRun();
         buttonBlocked = false;
         updateViews(updatedRun);
         run = updatedRun;
@@ -262,15 +303,17 @@ public class StartFragment extends Fragment implements OnMapReadyCallback {
         long timeInterval = updatedRun.getLong("timeInterval", 0);
         double distance = updatedRun.getDouble("distance", 0.0d);
         double velocity = updatedRun.getDouble("velocity", 0.0d);
+        double heightInterval = updatedRun.getDouble("heightInterval");
+
         if(activity_type.compareTo("walk") == 0){
-            walk_calculator.setCurrentParameters(distance, timeInterval, velocity);
+            walk_calculator.setCurrentParameters(distance, timeInterval, velocity, heightInterval);
             walk_calculator.setCurrentCaloriesBurned();
             walk_calculator.setEstimatedCalories();
             kaburnedView.setText(vf.formatCalories(walk_calculator.current_calories_burned));
             kaestimView.setText(vf.formatCalories(walk_calculator.estimated_calories));
         }
         if(activity_type.compareTo("run") == 0){
-            run_calculator.setCurrentParameters(distance, timeInterval);
+            run_calculator.setCurrentParameters(distance, timeInterval, heightInterval);
             run_calculator.setCurrentCaloriesBurned();
             run_calculator.setEstimatedCalories();
             kaburnedView.setText(vf.formatCalories(run_calculator.current_calories_burned));
@@ -357,7 +400,6 @@ public class StartFragment extends Fragment implements OnMapReadyCallback {
             toastIt("Complete your profile before starting");
             return false;
         }
-
         return true;
     }
 
@@ -368,18 +410,36 @@ public class StartFragment extends Fragment implements OnMapReadyCallback {
         double total_dist, total_time;
         double level, treadmill;
         double weight, height, age, heartrate;
+        boolean gpxTest = args.getBoolean("gpx");
         String gender;
+
         if(activity_type.compareTo("walk") == 0){
+            //total_dist in km, total_time in minutes
+            // level selected item position, weight in kg
             total_dist = Double.parseDouble(args.getString("total_distance"));
             total_time = Double.parseDouble(args.getString("total_time"));
             level = (double)args.getInt("level");
             weight = Double.parseDouble(user.getWeight());
             //toastIt(weight + " " + total_dist + " " + total_time + " " + level);
-            walk_calculator.setInitialParameters(weight, total_dist, total_time, level);
-            walk_calculator.setTotalCaloriesBurned();
+            if(gpxTest == false){
+                parsedGpx = null;
+                first_time_current_drawing = true; //pt golirea hartii la inceperea cursei
+                if (isMapsEnabled) {
+                    //get SupportMapFragment (wrapping most of the Map logic)
+                    SupportMapFragment smf = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.mapFragment);
+                    //calls onMapReady();
+                    smf.getMapAsync(this);
+                }
+                walk_calculator.setInitialParameters(weight, total_dist, total_time, level);
+                walk_calculator.setTotalCaloriesBurned();
+            } else
+                computeInitialWalkRoute(weight, total_dist, total_time, level);
+
             toastIt("Total calories to burn: " + vf.formatCalories(walk_calculator.total_calories_burned));
         }
         if(activity_type.compareTo("run") == 0){
+            //total_dist in km, total_time in minutes, level - item pos
+            //weight in kg, height in cm
             total_dist = Double.parseDouble(args.getString("total_distance"));
             total_time = Double.parseDouble(args.getString("total_time"));
             level = (double)args.getInt("level");
@@ -389,10 +449,148 @@ public class StartFragment extends Fragment implements OnMapReadyCallback {
             height = Double.parseDouble(user.getHeight());
             heartrate = Double.parseDouble(user.getHeartRate());
             gender = user.getGender();
-            run_calculator.setInitialParameters(age, weight, height, heartrate, treadmill, level,
-                    total_dist, total_time, gender);
-            run_calculator.setTotalCaloriesBurned();
+
+            if(gpxTest == false){
+                parsedGpx = null;
+                first_time_current_drawing = true; //pt golirea hartii la inceperea cursei
+                if (isMapsEnabled) {
+                    //get SupportMapFragment (wrapping most of the Map logic)
+                    SupportMapFragment smf = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.mapFragment);
+                    //calls onMapReady();
+                    smf.getMapAsync(this);
+                }
+                run_calculator.setInitialParameters(age, weight, height, heartrate, treadmill, level,
+                        total_dist, total_time, gender);
+                run_calculator.setTotalCaloriesBurned();
+            } else
+                computeInitialRunRoute(age, weight, height, heartrate, treadmill, level,
+                        total_dist, total_time, gender);
+
             toastIt("Total calories to burn: " + vf.formatCalories(run_calculator.total_calories_burned));
         }
+    }
+
+    public  void computeInitialWalkRoute(double weight, double total_dist, double total_time, double level){
+        //total_dist in km, total_time in minutes
+        // level selected item position, weight in kg
+        if(parsedGpx != null) {
+            if (isMapsEnabled) {
+                //get SupportMapFragment (wrapping most of the Map logic)
+                SupportMapFragment smf = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.mapFragment);
+                inital_route_drawn = true;
+                //calls onMapReady();
+                smf.getMapAsync(this);
+            }
+            Track track = parsedGpx.getTracks().get(0);
+            List<TrackSegment> segments = track.getTrackSegments();
+            if(segments.size() == 1){
+                walk_calculator.setInitialParameters(weight, total_dist, total_time, level);
+                walk_calculator.setTotalCaloriesBurned();
+            }
+            if(segments.size() > 1){
+                GeodeticCalculator geoCalc = new GeodeticCalculator();
+                Ellipsoid reference = Ellipsoid.WGS84;
+                GlobalPosition first;
+                GlobalPosition second;
+
+                for (int j = 0; j < segments.size(); j++)
+                {
+                    walk_calculator.setInitialParameters(weight, total_dist, total_time, level);
+                    List<TrackPoint> ltp = segments.get(j).getTrackPoints();
+                    double segment_dist = 0; // in meters
+                    double segment_time = 0; // in minutes
+                    double segment_slope = 0; // item position
+                    for(int i  = 1; i < ltp.size(); i++){
+                        first = new GlobalPosition(ltp.get(i-1).getLatitude(), ltp.get(i-1).getLongitude(), 0);
+                        second = new GlobalPosition(ltp.get(i).getLatitude(), ltp.get(i).getLongitude(), 0);
+                        segment_dist += geoCalc.calculateGeodeticCurve(reference, first, second).getEllipsoidalDistance();
+                    }
+                    if(ltp.get(0).getTime() != null){
+                        segment_time = ltp.get(ltp.size() - 1).getTime().toDate().getTime() - ltp.get(0).getTime().toDate().getTime();
+                        segment_time = segment_time / (double)1000 / (double)60;
+                    }
+                    //heightInterval in meters
+                    double heightInterval = ltp.get(ltp.size() - 1).getElevation() - ltp.get(0).getElevation();
+                    segment_slope = walk_calculator.computeSlope(heightInterval, segment_dist);
+
+                    walk_calculator.total_calories_burned += walk_calculator.getCalories(segment_dist, segment_time, segment_slope);
+                }
+            }
+        }
+    }
+
+    public void computeInitialRunRoute(double age, double weight, double height, double heartrate, double treadmill,
+                                       double level, double distance, double time, String gender){
+
+        //total_dist in km, total_time in minutes, level - item pos
+        //weight in kg, height in cm
+        if(parsedGpx != null) {
+            if (isMapsEnabled) {
+                //get SupportMapFragment (wrapping most of the Map logic)
+                SupportMapFragment smf = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.mapFragment);
+                inital_route_drawn = true;
+                //calls onMapReady();
+                smf.getMapAsync(this);
+            }
+            Track track = parsedGpx.getTracks().get(0);
+            List<TrackSegment> segments = track.getTrackSegments();
+            if(segments.size() == 1){
+                run_calculator.setInitialParameters(age, weight, height, heartrate, treadmill, level,
+                        distance, time, gender);
+                run_calculator.setTotalCaloriesBurned();
+            }
+            if(segments.size() > 1){
+                GeodeticCalculator geoCalc = new GeodeticCalculator();
+                Ellipsoid reference = Ellipsoid.WGS84;
+                GlobalPosition first;
+                GlobalPosition second;
+
+                run_calculator.setInitialParameters(age, weight, height, heartrate, treadmill, level,
+                        distance, time, gender);
+
+                for (int j = 0; j < segments.size(); j++)
+                {
+                    List<TrackPoint> ltp = segments.get(j).getTrackPoints();
+                    double segment_dist = 0; //in meters
+                    double segment_time = 0; //in minutes
+                    double segment_slope = 0; //item pos
+                    for(int i  = 1; i < ltp.size(); i++){
+                        first = new GlobalPosition(ltp.get(i-1).getLatitude(), ltp.get(i-1).getLongitude(), 0);
+                        second = new GlobalPosition(ltp.get(i).getLatitude(), ltp.get(i).getLongitude(), 0);
+                        segment_dist += geoCalc.calculateGeodeticCurve(reference, first, second).getEllipsoidalDistance();
+                    }
+                    if(ltp.get(0).getTime() != null){
+                        segment_time = ltp.get(ltp.size() - 1).getTime().toDate().getTime() - ltp.get(0).getTime().toDate().getTime();
+                        segment_time = segment_time / (double)1000 / (double)60;
+                    }
+                    double heightInterval = ltp.get(ltp.size() - 1).getElevation() - ltp.get(0).getElevation();
+                    //segment_dits in meters. heightInterval in meters
+                    segment_slope = run_calculator.computeSlope(heightInterval, segment_dist);
+
+                    segment_dist = segment_dist / (double)1000; // in km
+                    run_calculator.total_calories_burned += run_calculator.getGrossCalories(run_calculator.getCalories(segment_dist, segment_slope), time);
+                }
+            }
+        }
+    }
+
+    public ArrayList<LatLng> getInitalPointsGpx() {
+
+        ArrayList<LatLng> tp = new ArrayList<LatLng>();;
+
+        if (parsedGpx != null) {
+            List<Track> tracks = parsedGpx.getTracks();
+            for (int i = 0; i < tracks.size(); i++) {
+                Track track = tracks.get(i);
+                List<TrackSegment> segments = track.getTrackSegments();
+                for (int j = 0; j < segments.size(); j++) {
+                    TrackSegment segment = segments.get(j);
+                    for (TrackPoint trackPoint : segment.getTrackPoints()) {
+                        tp.add(new LatLng(trackPoint.getLatitude(), trackPoint.getLongitude()));
+                    }
+                }
+            }
+        }
+        return tp;
     }
 }

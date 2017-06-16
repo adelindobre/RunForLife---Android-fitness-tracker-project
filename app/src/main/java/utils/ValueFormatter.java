@@ -91,4 +91,12 @@ public class ValueFormatter {
         DecimalFormat df = new DecimalFormat("####0.00");
         return String.valueOf(df.format(value)) + " Ka";
     }
+    public String formatDistance2(double value){
+        DecimalFormat df = new DecimalFormat("####0.0");
+        return String.valueOf(df.format(value));
+    }
+    public String formatTime2(double value){
+        DecimalFormat df = new DecimalFormat("####0");
+        return String.valueOf(df.format(value));
+    }
 }

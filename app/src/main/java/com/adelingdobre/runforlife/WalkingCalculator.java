@@ -1,6 +1,7 @@
 package com.adelingdobre.runforlife;
 
 import android.util.Log;
+import android.widget.Toast;
 
 /**
  * Created by AdelinGDobre on 6/11/2017.
@@ -9,29 +10,33 @@ import android.util.Log;
 public class WalkingCalculator {
 
     public double weight; //kg
-    public double surface_grade;
+    public double surface_grade;  //item position
     public double total_distance; //meters
     public double total_time; //minutes
     public double total_calories_burned;
     public double current_calories_burned;
     public double current_distance; //meters
     public double current_time; //minutes
+    public double current_surface_grade; //item position
     public double estimated_calories;
     public double current_speed;
 
     public WalkingCalculator(){}
 
     public void setInitialParameters(double weight, double total_distance, double total_time, double surface_grade){
+        //weight in kg, total_distance in km, total_time in minutes, surface_grade - item selected position
         this.weight = weight;
         this.total_distance = total_distance * (double)1000;
         this.total_time = total_time;
         this.surface_grade = surface_grade;
     }
 
-    public void setCurrentParameters(double distance, long timeInterval, double velocity){
+    public void setCurrentParameters(double distance, double timeInterval, double velocity, double heightInterval){
+        //distance in meters, timeInterval in miliseconds, heightInterval in meters
         this.current_distance = distance;
         this.current_time = timeInterval / (double)1000 / (double)60;
         this.current_speed = velocity;
+        this.current_surface_grade = computeSlope(heightInterval, distance);
         //Log.d("vars", this.current_time + " " + timeInterval + " " + this.current_speed);
     }
 
@@ -48,12 +53,16 @@ public class WalkingCalculator {
         this.current_speed = 0;
     }
 
-    public double getCalories(double weight, double distance, double time, double level){
+    public double getCalories(double distance, double time, double level){
+        //distance in meters
+        //time in minutes
+        //weight in kg
+        //level - item position
         double cb = 0;
         double km  = distance / (double)1000;
         double t = time / (double)60;
         double kph = km / t;
-        double wkg = weight;
+        double wkg = this.weight;
 
         switch((int)level) {
             case 0:
@@ -136,14 +145,64 @@ public class WalkingCalculator {
     }
 
     public void setTotalCaloriesBurned(){
-        this.total_calories_burned = getCalories(this.weight, this.total_distance, this.total_time, this.surface_grade);
+        this.total_calories_burned = getCalories(this.total_distance, this.total_time, this.surface_grade);
     }
 
     public void setCurrentCaloriesBurned(){
-        this.current_calories_burned = getCalories(this.weight, this.current_distance, this.current_time, this.surface_grade);
+        this.current_calories_burned = getCalories(this.current_distance, this.current_time, this.current_surface_grade);
     }
 
     public void setEstimatedCalories(){
         this.estimated_calories = this.total_calories_burned - this.current_calories_burned;
+    }
+
+    public double computeSlope(double heightInterval, double distance){
+        double slope = ((heightInterval / distance)) * (double)100;
+        if(slope <= (double)-5)
+            return 0;
+        if((slope > (double)-5) && (slope <= (double)-4))
+            return 1;
+        if((slope > (double)-4) && (slope <= (double)-3))
+            return 2;
+        if((slope > (double)-3) && (slope <= (double)-2))
+            return 3;
+        if((slope > (double)-2) && (slope <= (double)-1))
+            return 4;
+        if((slope > (double)-1) && (slope <= (double)0))
+            return 5;
+        if((slope > (double)0) && (slope <= (double)1))
+            return 6;
+        if((slope > (double)1) && (slope <= (double)2))
+            return 7;
+        if((slope > (double)2) && (slope <= (double)3))
+            return 8;
+        if((slope > (double)3) && (slope <= (double)4))
+            return 9;
+        if((slope > (double)4) && (slope <= (double)5))
+            return 10;
+        if((slope > (double)5) && (slope <= (double)6))
+            return 11;
+        if((slope > (double)6) && (slope <= (double)7))
+            return 12;
+        if((slope > (double)7) && (slope <= (double)8))
+            return 13;
+        if((slope > (double)8) && (slope <= (double)9))
+            return 14;
+        if((slope > (double)9) && (slope <= (double)10))
+            return 15;
+        if((slope > (double)10) && (slope <= (double)11))
+            return 16;
+        if((slope > (double)11) && (slope <= (double)12))
+            return 17;
+        if((slope > (double)12) && (slope <= (double)13))
+            return 18;
+        if((slope > (double)13) && (slope <= (double)14))
+            return 19;
+        if((slope > (double)14) && (slope <= (double)15))
+            return 20;
+        if(slope >= 15)
+            return 20;
+
+        return 5;
     }
 }

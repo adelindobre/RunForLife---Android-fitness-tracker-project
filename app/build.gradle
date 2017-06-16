@@ -34,5 +34,8 @@ dependencies {
     compile 'com.android.support:preference-v7:25.3.1'
     compile 'com.android.support:support-v13:25.3.1'
     compile 'com.android.support:cardview-v7:25.3.1'
+    compile 'io.ticofab.androidgpxparser:parser:1.0.0'
+    compile "org.gavaghan:geodesy:1.1.3"
+    compile project(':aFileDialog')
     testCompile 'junit:junit:4.12'
 }
