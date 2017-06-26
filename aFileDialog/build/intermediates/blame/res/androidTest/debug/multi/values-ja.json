@@ -1,0 +1,406 @@
+[
+    {
+        "outputFile": "D:\\Licenta\\RunForLife\\aFileDialog\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-ja\\values-ja.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 51,
+                    "endOffset": 102
+                },
+                "from": {
+                    "file": "D:\\Licenta\\RunForLife\\aFileDialog\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 51,
+                        "endOffset": 102
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 107,
+                    "endColumn": 49,
+                    "endOffset": 152
+                },
+                "from": {
+                    "file": "D:\\Licenta\\RunForLife\\aFileDialog\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 107,
+                        "endColumn": 49,
+                        "endOffset": 152
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 157,
+                    "endColumn": 44,
+                    "endOffset": 197
+                },
+                "from": {
+                    "file": "D:\\Licenta\\RunForLife\\aFileDialog\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 157,
+                        "endColumn": 44,
+                        "endOffset": 197
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 202,
+                    "endColumn": 53,
+                    "endOffset": 251
+                },
+                "from": {
+                    "file": "D:\\Licenta\\RunForLife\\aFileDialog\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 202,
+                        "endColumn": 53,
+                        "endOffset": 251
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 6,
+                    "startColumn": 4,
+                    "startOffset": 256,
+                    "endColumn": 46,
+                    "endOffset": 298
+                },
+                "from": {
+                    "file": "D:\\Licenta\\RunForLife\\aFileDialog\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 256,
+                        "endColumn": 46,
+                        "endOffset": 298
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 7,
+                    "startColumn": 4,
+                    "startOffset": 303,
+                    "endColumn": 57,
+                    "endOffset": 356
+                },
+                "from": {
+                    "file": "D:\\Licenta\\RunForLife\\aFileDialog\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 303,
+                        "endColumn": 57,
+                        "endOffset": 356
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 8,
+                    "startColumn": 4,
+                    "startOffset": 361,
+                    "endColumn": 49,
+                    "endOffset": 406
+                },
+                "from": {
+                    "file": "D:\\Licenta\\RunForLife\\aFileDialog\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 8,
+                        "startColumn": 4,
+                        "startOffset": 361,
+                        "endColumn": 49,
+                        "endOffset": 406
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 9,
+                    "startColumn": 4,
+                    "startOffset": 411,
+                    "endColumn": 91,
+                    "endOffset": 498
+                },
+                "from": {
+                    "file": "D:\\Licenta\\RunForLife\\aFileDialog\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 9,
+                        "startColumn": 4,
+                        "startOffset": 411,
+                        "endColumn": 91,
+                        "endOffset": 498
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 10,
+                    "startColumn": 4,
+                    "startOffset": 503,
+                    "endColumn": 93,
+                    "endOffset": 592
+                },
+                "from": {
+                    "file": "D:\\Licenta\\RunForLife\\aFileDialog\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 10,
+                        "startColumn": 4,
+                        "startOffset": 503,
+                        "endColumn": 93,
+                        "endOffset": 592
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 11,
+                    "startColumn": 4,
+                    "startOffset": 597,
+                    "endColumn": 80,
+                    "endOffset": 673
+                },
+                "from": {
+                    "file": "D:\\Licenta\\RunForLife\\aFileDialog\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 11,
+                        "startColumn": 4,
+                        "startOffset": 597,
+                        "endColumn": 80,
+                        "endOffset": 673
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 12,
+                    "startColumn": 4,
+                    "startOffset": 678,
+                    "endColumn": 82,
+                    "endOffset": 756
+                },
+                "from": {
+                    "file": "D:\\Licenta\\RunForLife\\aFileDialog\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 12,
+                        "startColumn": 4,
+                        "startOffset": 678,
+                        "endColumn": 82,
+                        "endOffset": 756
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 13,
+                    "startColumn": 4,
+                    "startOffset": 761,
+                    "endColumn": 53,
+                    "endOffset": 810
+                },
+                "from": {
+                    "file": "D:\\Licenta\\RunForLife\\aFileDialog\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 13,
+                        "startColumn": 4,
+                        "startOffset": 761,
+                        "endColumn": 53,
+                        "endOffset": 810
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 14,
+                    "startColumn": 4,
+                    "startOffset": 815,
+                    "endColumn": 55,
+                    "endOffset": 866
+                },
+                "from": {
+                    "file": "D:\\Licenta\\RunForLife\\aFileDialog\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 14,
+                        "startColumn": 4,
+                        "startOffset": 815,
+                        "endColumn": 55,
+                        "endOffset": 866
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 15,
+                    "startColumn": 4,
+                    "startOffset": 871,
+                    "endColumn": 68,
+                    "endOffset": 935
+                },
+                "from": {
+                    "file": "D:\\Licenta\\RunForLife\\aFileDialog\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 15,
+                        "startColumn": 4,
+                        "startOffset": 871,
+                        "endColumn": 68,
+                        "endOffset": 935
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 16,
+                    "startColumn": 4,
+                    "startOffset": 940,
+                    "endColumn": 70,
+                    "endOffset": 1006
+                },
+                "from": {
+                    "file": "D:\\Licenta\\RunForLife\\aFileDialog\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 16,
+                        "startColumn": 4,
+                        "startOffset": 940,
+                        "endColumn": 70,
+                        "endOffset": 1006
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 17,
+                    "startColumn": 4,
+                    "startOffset": 1011,
+                    "endColumn": 52,
+                    "endOffset": 1059
+                },
+                "from": {
+                    "file": "D:\\Licenta\\RunForLife\\aFileDialog\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 17,
+                        "startColumn": 4,
+                        "startOffset": 1011,
+                        "endColumn": 52,
+                        "endOffset": 1059
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 18,
+                    "startColumn": 4,
+                    "startOffset": 1064,
+                    "endColumn": 50,
+                    "endOffset": 1110
+                },
+                "from": {
+                    "file": "D:\\Licenta\\RunForLife\\aFileDialog\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 18,
+                        "startColumn": 4,
+                        "startOffset": 1064,
+                        "endColumn": 50,
+                        "endOffset": 1110
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 19,
+                    "startColumn": 4,
+                    "startOffset": 1115,
+                    "endColumn": 43,
+                    "endOffset": 1154
+                },
+                "from": {
+                    "file": "D:\\Licenta\\RunForLife\\aFileDialog\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 19,
+                        "startColumn": 4,
+                        "startOffset": 1115,
+                        "endColumn": 43,
+                        "endOffset": 1154
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 20,
+                    "startColumn": 4,
+                    "startOffset": 1159,
+                    "endColumn": 42,
+                    "endOffset": 1197
+                },
+                "from": {
+                    "file": "D:\\Licenta\\RunForLife\\aFileDialog\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 20,
+                        "startColumn": 4,
+                        "startOffset": 1159,
+                        "endColumn": 42,
+                        "endOffset": 1197
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 21,
+                    "startColumn": 4,
+                    "startOffset": 1202,
+                    "endColumn": 46,
+                    "endOffset": 1244
+                },
+                "from": {
+                    "file": "D:\\Licenta\\RunForLife\\aFileDialog\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 21,
+                        "startColumn": 4,
+                        "startOffset": 1202,
+                        "endColumn": 46,
+                        "endOffset": 1244
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 22,
+                    "startColumn": 4,
+                    "startOffset": 1249,
+                    "endColumn": 43,
+                    "endOffset": 1288
+                },
+                "from": {
+                    "file": "D:\\Licenta\\RunForLife\\aFileDialog\\build\\intermediates\\bundles\\debug\\res\\values-ja\\values-ja.xml",
+                    "position": {
+                        "startLine": 22,
+                        "startColumn": 4,
+                        "startOffset": 1249,
+                        "endColumn": 43,
+                        "endOffset": 1288
+                    }
+                }
+            }
+        ]
+    }
+]

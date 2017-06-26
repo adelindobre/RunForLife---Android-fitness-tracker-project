@@ -1,0 +1,34 @@
+[
+    {
+        "merged": "D:\\Licenta\\RunForLife\\aFileDialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\folder.png",
+        "source": "D:\\Licenta\\RunForLife\\aFileDialog\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\folder.png"
+    },
+    {
+        "merged": "D:\\Licenta\\RunForLife\\aFileDialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\tick.png",
+        "source": "D:\\Licenta\\RunForLife\\aFileDialog\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\tick.png"
+    },
+    {
+        "merged": "D:\\Licenta\\RunForLife\\aFileDialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ic_launcher.png",
+        "source": "D:\\Licenta\\RunForLife\\aFileDialog\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\Licenta\\RunForLife\\aFileDialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\no.png",
+        "source": "D:\\Licenta\\RunForLife\\aFileDialog\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\no.png"
+    },
+    {
+        "merged": "D:\\Licenta\\RunForLife\\aFileDialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\add.png",
+        "source": "D:\\Licenta\\RunForLife\\aFileDialog\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\add.png"
+    },
+    {
+        "merged": "D:\\Licenta\\RunForLife\\aFileDialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\folder_gray.png",
+        "source": "D:\\Licenta\\RunForLife\\aFileDialog\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\folder_gray.png"
+    },
+    {
+        "merged": "D:\\Licenta\\RunForLife\\aFileDialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\document_gray.png",
+        "source": "D:\\Licenta\\RunForLife\\aFileDialog\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\document_gray.png"
+    },
+    {
+        "merged": "D:\\Licenta\\RunForLife\\aFileDialog\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\document.png",
+        "source": "D:\\Licenta\\RunForLife\\aFileDialog\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\document.png"
+    }
+]
