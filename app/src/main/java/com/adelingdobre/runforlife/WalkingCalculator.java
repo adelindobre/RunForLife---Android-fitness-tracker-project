@@ -23,6 +23,9 @@ public class WalkingCalculator {
 
     public WalkingCalculator(){}
 
+    public void setInitialParameters(double weight){
+        this.weight = weight;
+    }
     public void setInitialParameters(double weight, double total_distance, double total_time, double surface_grade){
         //weight in kg, total_distance in km, total_time in minutes, surface_grade - item selected position
         this.weight = weight;

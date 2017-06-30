@@ -1,8 +1,6 @@
 package com.adelingdobre.runforlife;
 
-import android.*;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -30,8 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ar.com.daidalos.afiledialog.FileChooserDialog;
-import io.ticofab.androidgpxparser.parser.GPXParser;
-import io.ticofab.androidgpxparser.parser.domain.Gpx;
+
 import io.ticofab.androidgpxparser.parser.domain.Track;
 import io.ticofab.androidgpxparser.parser.domain.TrackPoint;
 import io.ticofab.androidgpxparser.parser.domain.TrackSegment;
@@ -84,6 +81,8 @@ public class WalkingFragment extends Fragment {
             //Toast toast = Toast.makeText(getActivity(), "File selected: " + file.getName(), Toast.LENGTH_LONG);
             //toast.show();
             upload_file.setText(file.getName());
+            distance_info.setText("");
+            time_info.setText("");
             mFile = file.getName();
             try {
                 InputStream in = new FileInputStream(file);
@@ -120,22 +119,25 @@ public class WalkingFragment extends Fragment {
                         }
                     }
                 }
-
-
-                for(int i  = 1; i < tp.size(); i++){
-                    first = new GlobalPosition(tp.get(i-1).getLatitude(), tp.get(i-1).getLongitude(), 0);
-                    second = new GlobalPosition(tp.get(i).getLatitude(), tp.get(i).getLongitude(), 0);
-                    distance += geoCalc.calculateGeodeticCurve(reference, first, second).getEllipsoidalDistance();
-                }
-                if(tp.get(0).getTime() != null){
+                if(tp.get(0).getTime() != null) {
                     time = tp.get(tp.size() - 1).getTime().toDate().getTime() - tp.get(0).getTime().toDate().getTime();
-                    time_info.setText(vf.formatTime2(time / (double)1000 / (double)60));
-                }
-                distance_info.setText(vf.formatDistance2(distance / (double)1000));
-                if(nr_segments > 1)
+                    time_info.setText(vf.formatTime2(time / (double) 1000 / (double) 60));
+
+                    for (int i = 1; i < tp.size(); i++) {
+                        first = new GlobalPosition(tp.get(i - 1).getLatitude(), tp.get(i - 1).getLongitude(), 0);
+                        second = new GlobalPosition(tp.get(i).getLatitude(), tp.get(i).getLongitude(), 0);
+                        distance += geoCalc.calculateGeodeticCurve(reference, first, second).getEllipsoidalDistance();
+                    }
+                    distance_info.setText(vf.formatDistance2(distance / (double) 1000));
+
                     spinner.setSelection(21);
-                else
+                } else {
+                    toastIt("No time defined for this route");
+                    distance_info.setText("");
+                    time_info.setText("");
+                    upload_file.setText("");
                     spinner.setSelection(0);
+                }
             } else {
                 Log.e(TAG, "Error parsing gpx track!");
             }
@@ -195,15 +197,23 @@ public class WalkingFragment extends Fragment {
                     args.putString("total_distance", dist);
                     args.putString("total_time", time);
                     args.putInt("level", spinner.getSelectedItemPosition());
+                    boolean gpx = false;
                     if((StartFragment.parsedGpx != null) && (upload_file.getText() != null) && (mFile != null))
-                        if(upload_file.getText().toString().compareTo(mFile) == 0)
+                        if(upload_file.getText().toString().compareTo(mFile) == 0) {
                             args.putBoolean("gpx", true);
-                        else
+                            gpx = true;
+                        }
+                        else {
                             args.putBoolean("gpx", false);
-                    intent.putExtras(args);
-
-                    getActivity().startActivity(intent);
-                    getActivity().finish();
+                            gpx = false;
+                        }
+                    if(spinner.getSelectedItemPosition() == 21 && gpx == false){
+                        toastIt("Choose a Walking Surface Grade");
+                    } else {
+                        intent.putExtras(args);
+                        getActivity().startActivity(intent);
+                        getActivity().finish();
+                    }
                 }
             }
         });

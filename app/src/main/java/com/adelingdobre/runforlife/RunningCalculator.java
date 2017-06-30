@@ -46,6 +46,19 @@ public class RunningCalculator {
         grossCalculator.setInitialParameters(this.gender, this.age, this.weight, this.height);
     }
 
+    public void setInitialParameters(double age, double weight, double height, double heartrate, double treadmill,
+                                     String gender){
+        //distance in km, time in min
+        //weight in kg, height in cm
+        this.age = age;
+        this.weight = weight;
+        this.height = height;
+        this.heartrate = heartrate;
+        this.treadmill = treadmill;
+        this.gender = gender;
+        grossCalculator.setInitialParameters(this.gender, this.age, this.weight, this.height);
+    }
+
     public void setCurrentParameters(double distance, double time, double heightInterval){
         //distance in meters, time in miliseconds, heightInterval in meters;
         this.current_distance = distance / (double)1000;

@@ -56,7 +56,15 @@ public class OptionsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_options);
 
         viewPager = (ViewPager)findViewById(R.id.id_viewpager) ;
-        viewPager.setOffscreenPageLimit(2);
+        viewPager.setOffscreenPageLimit(3);
+        viewPager.beginFakeDrag();
+        viewPager.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return true;
+            }
+
+        });
         setupViewPager(viewPager);
 
         typeSpinner = (Spinner)findViewById(R.id.typeSpinner);
@@ -72,6 +80,8 @@ public class OptionsActivity extends AppCompatActivity {
                             viewPager.setCurrentItem(0);
                         if(position == 1)
                             viewPager.setCurrentItem(1);
+                        if(position == 2)
+                            viewPager.setCurrentItem(2);
                     }
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {
@@ -84,6 +94,7 @@ public class OptionsActivity extends AppCompatActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new WalkingFragment(), "Walking");
         adapter.addFragment(new RunningFragment(), "Running");
+        adapter.addFragment(new CyclingFragment(), "Cycling");
         viewPager.setAdapter(adapter);
     }
 

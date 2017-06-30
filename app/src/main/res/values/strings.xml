@@ -91,6 +91,7 @@
     <string-array name="type_activities">
         <item>Walking</item>
         <item>Running</item>
+        <item>Cycling</item>
     </string-array>
     <string name="surface_text">Walking Surface Grade</string>
     <string name="running_surface_text">Running Surface Grade</string>
@@ -100,8 +101,10 @@
     <string name="gpx_text">Upload a route (optionally)</string>
     <string name="walk_button">GO FOR A WALK</string>
     <string name="run_button">GO FOR A RUN</string>
+    <string name="ride_button">GO FOR A RIDE</string>
     <string name="treadmill">On Treadmill?</string>
-    <string-array name = "level_surface">
+    <string name="intensity_text">Cycling Intensity</string>
+    <string-array name="level_surface">
         <item>5% Decline</item>
         <item>4% Decline</item>
         <item>3% Decline</item>
@@ -125,7 +128,7 @@
         <item>15% Incline</item>
         <item>No need</item>
     </string-array>
-    <string-array name = "run_surface">
+    <string-array name="run_surface">
         <item>20% Decline</item>
         <item>19% Decline</item>
         <item>18% Decline</item>
@@ -168,7 +171,15 @@
         <item>Yes</item>
         <item>No</item>
     </string-array>
-
-
+    <string-array name="cycling">
+        <item>lower than 16 kph</item>
+        <item>16-19 kph, light effort</item>
+        <item>19-22 kph, moderate effort </item>
+        <item>22-25 kph, vigorous effort</item>
+        <item>25-30 kph, very fast</item>
+        <item>higher than 30 kph"</item>
+        <item>bmx or mountain</item>
+        <item>unicycling</item>
+    </string-array>
 
 </resources>
