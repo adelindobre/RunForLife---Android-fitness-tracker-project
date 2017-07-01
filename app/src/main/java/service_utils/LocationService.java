@@ -134,6 +134,7 @@ public class LocationService extends Service implements LocationListener {
 
     private long storeRun(){
         Run run = new Run(runId, usermail);
+        runBundle.putLong("id", runId);
         return storeRun(run);
     }
 

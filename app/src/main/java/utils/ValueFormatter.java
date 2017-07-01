@@ -89,7 +89,11 @@ public class ValueFormatter {
 
     public String formatCalories(double value){
         DecimalFormat df = new DecimalFormat("####0.00");
-        return String.valueOf(df.format(value)) + " Ka";
+        return String.valueOf(df.format(value)) + " Ca";
+    }
+    public String formatCalories2(double value){
+        DecimalFormat df = new DecimalFormat("####0.00");
+        return String.valueOf(df.format(value)) + " Ca/h";
     }
     public String formatDistance2(double value){
         DecimalFormat df = new DecimalFormat("####0.0");

@@ -67,6 +67,7 @@ public final class RunsContract {
         public static final String COLUMN_NAME_BREAK_TIME = "break_time";
         public static final String COLUMN_NAME_TIMESTAMP = "timestamp";
         public static final String COLUMN_NAME_USER = "email";
+        public static final String COLUMN_NAME_CALORIES = "calories";
 
         public static  final String[] PROJECTION = {
                 _ID,
@@ -78,7 +79,8 @@ public final class RunsContract {
                 COLUMN_NAME_DESCEND_INTERVAL,
                 COLUMN_NAME_BREAK_TIME,
                 COLUMN_NAME_TIMESTAMP,
-                COLUMN_NAME_USER
+                COLUMN_NAME_USER,
+                COLUMN_NAME_CALORIES
         };
     }
 }

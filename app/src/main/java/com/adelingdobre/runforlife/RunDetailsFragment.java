@@ -60,6 +60,8 @@ public class RunDetailsFragment extends Fragment {
         LinearLayout ascentLayout = (LinearLayout) view.findViewById(R.id.ascIntervalLayout);
         LinearLayout descentLayout = (LinearLayout) view.findViewById(R.id.descIntervalLayout);
         LinearLayout breakTimeLayout = (LinearLayout) view.findViewById(R.id.totalBreakLayout);
+        LinearLayout totalCaloriesLayout = (LinearLayout) view.findViewById(R.id.totalCaloriesLayout);
+        LinearLayout hourCaloriesLayout = (LinearLayout) view.findViewById(R.id.hourCaloriesLayout);
 
         //Generate all the value layouts
         LinearLayout distanceValueLayout = new LinearLayout(context);
@@ -90,38 +92,57 @@ public class RunDetailsFragment extends Fragment {
         breakTimeValueLayout.setOrientation(LinearLayout.VERTICAL);
         breakTimeLayout.addView(breakTimeValueLayout);
 
+        LinearLayout totalCaloriesValueLayout = new LinearLayout(context);
+        totalCaloriesValueLayout.setOrientation(LinearLayout.VERTICAL);
+        totalCaloriesLayout.addView(totalCaloriesValueLayout);
+
+        LinearLayout hourCaloriesValueLayout = new LinearLayout(context);
+        hourCaloriesValueLayout.setOrientation(LinearLayout.VERTICAL);
+        hourCaloriesLayout.addView(hourCaloriesValueLayout);
+
         //populate Layouts with TextViews and values
         for (int i = 0; i < runs.size(); i++){
             Run run = runs.get(i);
 
+            int k = 8;
             //set up all TextViews
             TextView distanceView = new TextView(context);
             distanceView.setText(vf.formatDistance(run.distance));
-            setUpTextView(distanceView, i);
+            setUpTextView(distanceView, k);
 
             TextView timeIntervalView = new TextView(context);
             timeIntervalView.setText(vf.formatTimeInterval(run.timeInterval));
-            setUpTextView(timeIntervalView, i);
+            setUpTextView(timeIntervalView, k);
 
             TextView maxVelocityView = new TextView(context);
             maxVelocityView.setText(vf.formatVelocity(run.maxVelocity));
-            setUpTextView(maxVelocityView, i);
+            setUpTextView(maxVelocityView, k);
 
             TextView avgVelocityView = new TextView(context);
             avgVelocityView.setText(vf.formatVelocity(run.medVelocity));
-            setUpTextView(avgVelocityView, i);
+            setUpTextView(avgVelocityView, k);
 
             TextView ascentView = new TextView(context);
             ascentView.setText(vf.formatDistance(run.ascendInterval));
-            setUpTextView(ascentView, i);
+            setUpTextView(ascentView, k);
 
             TextView descentView = new TextView(context);
             descentView.setText(vf.formatDistance(run.descendInterval));
-            setUpTextView(descentView, i);
+            setUpTextView(descentView, k);
 
             TextView breakView = new TextView(context);
             breakView.setText(vf.formatTimeInterval(run.breakTime));
-            setUpTextView(breakView, i);
+            setUpTextView(breakView, k);
+
+            TextView totalCalories = new TextView(context);
+            totalCalories.setText(vf.formatCalories(run.calories));
+            setUpTextView(totalCalories, k);
+
+            double time = run.timeInterval / (double)1000 / (double)60 / (double)60;
+            double caloriesPerHour = run.calories / time;
+            TextView hourCalories = new TextView(context);
+            hourCalories.setText(vf.formatCalories2(caloriesPerHour));
+            setUpTextView(hourCalories, k);
 
             //add TextViews to value layouts
             distanceValueLayout.addView(distanceView);
@@ -131,6 +152,8 @@ public class RunDetailsFragment extends Fragment {
             ascentValueLayout.addView(ascentView);
             descentValueLayout.addView(descentView);
             breakTimeValueLayout.addView(breakView);
+            totalCaloriesLayout.addView(totalCalories);
+            hourCaloriesLayout.addView(hourCalories);
         }
         return view;
     }

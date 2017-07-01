@@ -47,6 +47,9 @@ import io.ticofab.androidgpxparser.parser.domain.Gpx;
 import io.ticofab.androidgpxparser.parser.domain.Track;
 import io.ticofab.androidgpxparser.parser.domain.TrackPoint;
 import io.ticofab.androidgpxparser.parser.domain.TrackSegment;
+import runsdb.LocationDBHelper;
+import runsdb.LocationDBReader;
+import runsdb.LocationDBWriter;
 import utils.LineColors;
 import utils.User;
 import utils.UsersDB;
@@ -80,7 +83,12 @@ public class StartFragment extends Fragment implements OnMapReadyCallback {
     boolean details_received = false;
     boolean inital_route_drawn = false; //pt desenarea traseului din fisierul gpx
     boolean first_time_current_drawing = false; //pt golirea hartii la start-ul GPS-ului
+
     UsersDB usersDB;
+    LocationDBReader dbReader;
+    LocationDBWriter dbWriter;
+    LocationDBHelper dbHelper;
+
     static GPXParser mParser = new GPXParser();
     static Gpx parsedGpx = null;
 
@@ -116,6 +124,10 @@ public class StartFragment extends Fragment implements OnMapReadyCallback {
         waypoints = new ArrayList<>();
 
         usersDB = new UsersDB(getActivity());
+        dbHelper = new LocationDBHelper(getActivity());
+        dbReader = new LocationDBReader(dbHelper);
+        dbWriter = new LocationDBWriter(dbHelper);
+
         walk_calculator = new WalkingCalculator();
         run_calculator = new RunningCalculator();
         ride_calculator = new CyclingCalculator();
@@ -309,10 +321,12 @@ public class StartFragment extends Fragment implements OnMapReadyCallback {
         //timeInterval in miliseconds
         //distance in meters
         // velocity in meters per second
+        long id = updatedRun.getLong("id");
         long timeInterval = updatedRun.getLong("timeInterval", 0);
         double distance = updatedRun.getDouble("distance", 0.0d);
         double velocity = updatedRun.getDouble("velocity", 0.0d);
         double heightInterval = updatedRun.getDouble("heightInterval");
+        double caloriesBurned = 0;
 
         if(activity_type.compareTo("walk") == 0){
             walk_calculator.setCurrentParameters(distance, timeInterval, velocity, heightInterval);
@@ -320,6 +334,7 @@ public class StartFragment extends Fragment implements OnMapReadyCallback {
             walk_calculator.setEstimatedCalories();
             kaburnedView.setText(vf.formatCalories(walk_calculator.current_calories_burned));
             kaestimView.setText(vf.formatCalories(walk_calculator.estimated_calories));
+            caloriesBurned = walk_calculator.current_calories_burned;
         }
         if(activity_type.compareTo("run") == 0){
             run_calculator.setCurrentParameters(distance, timeInterval, heightInterval);
@@ -327,6 +342,7 @@ public class StartFragment extends Fragment implements OnMapReadyCallback {
             run_calculator.setEstimatedCalories();
             kaburnedView.setText(vf.formatCalories(run_calculator.current_calories_burned));
             kaestimView.setText(vf.formatCalories(run_calculator.estimated_calories));
+            caloriesBurned = run_calculator.current_calories_burned;
         }
         if(activity_type.compareTo("ride") == 0){
             ride_calculator.setCurrentParameters(timeInterval);
@@ -334,10 +350,13 @@ public class StartFragment extends Fragment implements OnMapReadyCallback {
             ride_calculator.setEstimatedCalories();
             kaburnedView.setText(vf.formatCalories(ride_calculator.current_calories_burned));
             kaestimView.setText(vf.formatCalories(ride_calculator.total_calories_burned));
+            caloriesBurned = ride_calculator.current_calories_burned;
         }
         durationView.setText(vf.formatTimeInterval(timeInterval));
         distanceView.setText(vf.formatDistance(distance));
         velocityView.setText(vf.formatVelocity(velocity));
+
+        dbWriter.updateCaloriesRun(id, caloriesBurned, dbReader);
     }
 
     protected void updateMap(LatLng latestPosition){

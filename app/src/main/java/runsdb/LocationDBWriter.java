@@ -60,6 +60,14 @@ public class LocationDBWriter {
         return updatedRun;
     }
 
+    public void updateCaloriesRun(long id, double calories, LocationDBReader dbRead){
+        Run run = dbRead.getRunForCaloriesUpdate(id);
+        if(run != null){
+            run.calories = calories;
+            updateRun(run);
+        }
+    }
+
     private long updateRun(Run run){
         SQLiteDatabase db = dbHelp.getWritableDatabase();
         ContentValues values = run.toContentValues(false);

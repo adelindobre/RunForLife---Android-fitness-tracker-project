@@ -12,7 +12,7 @@ public class LocationHelper {
     LocationListener locLis;
 
     String LOCATION_PROVIDER = "gps";
-    private int minUpdateInterval = 1000;
+    private int minUpdateInterval = 2000;
     private int minUpdateDistance = 0;
 
     public LocationHelper(Context context){

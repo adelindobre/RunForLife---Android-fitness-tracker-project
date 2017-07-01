@@ -42,7 +42,8 @@ public class LocationDBHelper extends SQLiteOpenHelper {
                     RunsContract.Runs.COLUMN_NAME_DESCEND_INTERVAL + " REAL," +
                     RunsContract.Runs.COLUMN_NAME_TIMESTAMP + " INTEGER," +
                     RunsContract.Runs.COLUMN_NAME_BREAK_TIME + " INTEGER," +
-                    RunsContract.Runs.COLUMN_NAME_USER + " STRING" + " )";
+                    RunsContract.Runs.COLUMN_NAME_USER + " STRING," +
+                    RunsContract.Runs.COLUMN_NAME_CALORIES + " REAL" + " )";
 
     private final String SQL_DROP_WAYPOINTS = "DROP TABLE IF EXISTS " + RunsContract.Waypoints.TABLE_NAME;
     private final String SQL_DROP_SECTIONS = "DROP TABLE IF EXISTS " + RunsContract.Sections.TABLE_NAME;

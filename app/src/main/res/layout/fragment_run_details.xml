@@ -1,9 +1,11 @@
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.adelingdobre.runforlife.RunDetailsFragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -14,116 +16,298 @@
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_height="match_parent"
-            android:id="@+id/labelsLayout"
-            android:padding="5dp">
+            android:id="@+id/labelsLayout">
 
-
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/distanceLayout">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/total_distance"
-                    android:id="@+id/runDistanceLabel"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_weight="1" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/intervalLayout">
+                card_view:cardBackgroundColor="@color/colorCurrentTrackCardBackground"
+                card_view:cardCornerRadius="2dp"
+                card_view:cardElevation="3dp"
+                card_view:cardUseCompatPadding="true">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/total_duration"
-                    android:id="@+id/runIntervalLabel"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_weight="1" />
-            </LinearLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:orientation="horizontal"
+                    <LinearLayout
+                        android:padding="5dp"
+                        android:id="@+id/distanceLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/runDistanceLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/total_distance"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/textColorSecondary" />
+                    </LinearLayout>
+
+                    <ProgressBar
+                        android:id="@+id/id_progressBar_card1"
+                        style="@style/ProgressBarCard"
+                        android:layout_width="match_parent"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/distanceLayout"
+                        android:indeterminate="true"
+                        android:indeterminateTint="@color/colorCardBackground"
+                        android:max="100"
+                        android:progress="0" />
+
+                    <LinearLayout
+                        android:padding="5dp"
+                        android:id="@+id/intervalLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/id_progressBar_card1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/runIntervalLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/total_duration"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/textColorSecondary" />
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/maxVelocityLayout">
+                card_view:cardBackgroundColor="@color/colorCurrentTrackCardBackground"
+                card_view:cardCornerRadius="2dp"
+                card_view:cardElevation="3dp"
+                card_view:cardUseCompatPadding="true">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/max_velocity"
-                    android:id="@+id/runMaxVelocityLabel"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_weight="1" />
-            </LinearLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:orientation="horizontal"
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:id="@+id/maxVelocityLayout">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/max_velocity"
+                            android:id="@+id/runMaxVelocityLabel"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/textColorSecondary"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+
+                    <ProgressBar
+                        android:id="@+id/id_progressBar_card2"
+                        style="@style/ProgressBarCard"
+                        android:layout_width="match_parent"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/maxVelocityLayout"
+                        android:indeterminate="true"
+                        android:indeterminateTint="@color/colorCardBackground"
+                        android:max="100"
+                        android:progress="0" />
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:id="@+id/avgVelocityLayout"
+                        android:layout_below="@+id/id_progressBar_card2">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/avg_velocity"
+                            android:id="@+id/runAvgVelocityLabel"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/textColorSecondary"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/avgVelocityLayout">
+                card_view:cardBackgroundColor="@color/colorCurrentTrackCardBackground"
+                card_view:cardCornerRadius="2dp"
+                card_view:cardElevation="3dp"
+                card_view:cardUseCompatPadding="true">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/avg_velocity"
-                    android:id="@+id/runAvgVelocityLabel"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_weight="1" />
-            </LinearLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:orientation="horizontal"
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/ascIntervalLayout"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/total_ascent"
+                            android:id="@+id/runAscIntervalLabel"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/textColorSecondary"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+
+                    <ProgressBar
+                        android:id="@+id/id_progressBar_card3"
+                        style="@style/ProgressBarCard"
+                        android:layout_width="match_parent"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ascIntervalLayout"
+                        android:indeterminate="true"
+                        android:indeterminateTint="@color/colorCardBackground"
+                        android:max="100"
+                        android:progress="0" />
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/descIntervalLayout"
+                        android:layout_below="@+id/id_progressBar_card3"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/total_descent"
+                            android:id="@+id/runDescIntervalLabel"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/textColorSecondary"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+
+                    <ProgressBar
+                        android:id="@+id/id_progressBar_card4"
+                        style="@style/ProgressBarCard"
+                        android:layout_width="match_parent"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/descIntervalLayout"
+                        android:indeterminate="true"
+                        android:indeterminateTint="@color/colorCardBackground"
+                        android:max="100"
+                        android:progress="0" />
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/totalBreakLayout"
+                        android:layout_below="@+id/id_progressBar_card4"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/total_break"
+                            android:id="@+id/totalBreakLabel"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/textColorSecondary"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/ascIntervalLayout">
+                card_view:cardBackgroundColor="@color/colorCurrentTrackCardBackground"
+                card_view:cardCornerRadius="2dp"
+                card_view:cardElevation="3dp"
+                card_view:cardUseCompatPadding="true">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/total_ascent"
-                    android:id="@+id/runAscIntervalLabel"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_weight="1" />
-            </LinearLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/descIntervalLayout">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/totalCaloriesLayout"
+                        android:padding="5dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/total_descent"
-                    android:id="@+id/runDescIntervalLabel"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_weight="1" />
-            </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/total_calories"
+                            android:id="@+id/totalCaloriesLabel"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/textColorSecondary"
+                            android:layout_weight="1" />
+                    </LinearLayout>
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/totalBreakLayout">
+                    <ProgressBar
+                        android:id="@+id/id_progressBar_card5"
+                        style="@style/ProgressBarCard"
+                        android:layout_width="match_parent"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/totalCaloriesLayout"
+                        android:indeterminate="true"
+                        android:indeterminateTint="@color/colorCardBackground"
+                        android:max="100"
+                        android:progress="0" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/total_break"
-                    android:id="@+id/totalBreakLabel"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_weight="1" />
-            </LinearLayout>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/hourCaloriesLayout"
+                        android:layout_below="@+id/id_progressBar_card5"
+                        android:padding="5dp">
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/hour_calories"
+                            android:id="@+id/hourCaloriesLabel"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/textColorSecondary"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
 
 
         </LinearLayout>

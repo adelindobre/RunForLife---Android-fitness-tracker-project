@@ -52,6 +52,8 @@
     <string name="total_ascent">Total ascent:</string>
     <string name="total_descent">Total descent:</string>
     <string name="total_break">Total break:</string>
+    <string name="total_calories">Total calories:</string>
+    <string name="hour_calories">Calories per hour:</string>
 
     <string name="january">January</string>
     <string name="february">February</string>

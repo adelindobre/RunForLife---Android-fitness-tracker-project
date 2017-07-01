@@ -78,11 +78,11 @@ public class LocationDBReader {
     }
     public Run calculateRun(long id){
         ArrayList<Segment> segments = getSegments(id);
-        String usermail = getUsermail(id);
-        return calculateRun(segments, id, usermail);
+        Run run  = getRun(id);
+        return calculateRun(segments, id, run.usermail, run.calories);
     }
 
-    protected Run calculateRun(final ArrayList<Segment> segments, long id, String usermail){
+    protected Run calculateRun(final ArrayList<Segment> segments, long id, String usermail, double calories){
         double distance = calculateDistance(segments);
         long timeInterval = calculateTimeInterval(segments);
         double maxVelocity = calculateMaxVelocity(segments);
@@ -91,7 +91,7 @@ public class LocationDBReader {
         double descendInterval = - calculateInterval(segments, 2);
         long breakTime = calculateBreakTime(segments);
         long timestamp =  calculateTimestamp(segments);
-        return new Run(id, distance, timeInterval, maxVelocity, medVelocity, ascendInterval, descendInterval, breakTime, timestamp, usermail);
+        return new Run(id, distance, timeInterval, maxVelocity, medVelocity, ascendInterval, descendInterval, breakTime, timestamp, usermail, calories);
     }
 
     private double calculateDistance(ArrayList<Segment> segments){
@@ -246,6 +246,20 @@ public class LocationDBReader {
         return new Waypoint(longtitude, latitude, height, timestamp, runId);
     }
 
+    public Run getRunForCaloriesUpdate(long id){
+        Run run = null;
+        SQLiteDatabase db = dbHelp.getReadableDatabase();
+        String selection = RunsContract.Runs._ID + " = ?";
+        String[] selectionArgs = {String.valueOf(id)};
+        Cursor c = db.query(RunsContract.Runs.TABLE_NAME, null, selection, selectionArgs, null, null, null);
+        if(c.moveToFirst()){
+            run = getRun(c);
+        }
+        c.close();
+        db.close();
+        return run;
+    }
+
     public Run getRun(long id){
         SQLiteDatabase db = dbHelp.getReadableDatabase();
         String selection = RunsContract.Runs._ID + " = ?";
@@ -269,7 +283,8 @@ public class LocationDBReader {
         long breakTime = c.getLong(c.getColumnIndexOrThrow(RunsContract.Runs.COLUMN_NAME_BREAK_TIME));
         long timestamp = c.getLong(c.getColumnIndexOrThrow(RunsContract.Runs.COLUMN_NAME_TIMESTAMP));
         String usermail = c.getString(c.getColumnIndexOrThrow(RunsContract.Runs.COLUMN_NAME_USER));
-        return new Run(id, distance, timeInterval, maxVelocity, medVelocity, ascInterval, descInterval, breakTime, timestamp, usermail);
+        double calories = c.getDouble(c.getColumnIndexOrThrow(RunsContract.Runs.COLUMN_NAME_CALORIES));
+        return new Run(id, distance, timeInterval, maxVelocity, medVelocity, ascInterval, descInterval, breakTime, timestamp, usermail, calories);
     }
 
     public Long[] getRunIds(){

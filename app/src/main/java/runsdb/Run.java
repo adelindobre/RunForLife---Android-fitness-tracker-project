@@ -17,6 +17,7 @@ public class Run {
     public long breakTime;
     public long timestamp;
     public String usermail;
+    public double calories;
 
     public Run(){}
 
@@ -44,7 +45,8 @@ public class Run {
         this.id = id;
     }
 
-    public Run(long id, double distance, long timeInterval, double maxVelocity, double medVelocity, double ascendInterval, double descendInterval, long breakTime, long timestamp, String usermail){
+    public Run(long id, double distance, long timeInterval, double maxVelocity, double medVelocity, double ascendInterval, double descendInterval,
+               long breakTime, long timestamp, String usermail, double calories){
         this. id = id;
         this.distance = distance;
         this.timeInterval = timeInterval;
@@ -55,6 +57,7 @@ public class Run {
         this.breakTime = breakTime;
         this.timestamp = timestamp;
         this.usermail = usermail;
+        this.calories = calories;
     }
 
     public ContentValues toContentValues(boolean storeId){
@@ -71,6 +74,7 @@ public class Run {
         values.put(RunsContract.Runs.COLUMN_NAME_BREAK_TIME, breakTime);
         values.put(RunsContract.Runs.COLUMN_NAME_TIMESTAMP, timestamp);
         values.put(RunsContract.Runs.COLUMN_NAME_USER, usermail);
+        values.put(RunsContract.Runs.COLUMN_NAME_CALORIES, calories);
         return values;
     }
 }
