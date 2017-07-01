@@ -46,6 +46,7 @@ public class CyclingFragment extends Fragment {
     private String time;
     private ValueFormatter vf;
     private String mFile;
+    private double distance;
 
     String TAG = "test";
     GeodeticCalculator geoCalc = new GeodeticCalculator();
@@ -118,6 +119,14 @@ public class CyclingFragment extends Fragment {
                     time = tp.get(tp.size() - 1).getTime().toDate().getTime() - tp.get(0).getTime().toDate().getTime();
                     time_info.setText(vf.formatTime2(time / (double) 1000 / (double) 60));
 
+                    distance = 0;
+                    for (int i = 1; i < tp.size(); i++) {
+                        first = new GlobalPosition(tp.get(i - 1).getLatitude(), tp.get(i - 1).getLongitude(), 0);
+                        second = new GlobalPosition(tp.get(i).getLatitude(), tp.get(i).getLongitude(), 0);
+                        distance += geoCalc.calculateGeodeticCurve(reference, first, second).getEllipsoidalDistance();
+                    }
+                    distance = distance / (double)1000;
+
                 } else {
                     toastIt("No time defined for this route");
                     time_info.setText("");
@@ -178,6 +187,7 @@ public class CyclingFragment extends Fragment {
                     Bundle args = new Bundle();
                     args.putString("type", "ride");
                     args.putString("total_time", time);
+                    args.putString("total_distance", Double.toString(distance));
                     args.putInt("level", spinner.getSelectedItemPosition());
                     if((StartFragment.parsedGpx != null) && (upload_file.getText() != null) && (mFile != null))
                         if(upload_file.getText().toString().compareTo(mFile) == 0) {

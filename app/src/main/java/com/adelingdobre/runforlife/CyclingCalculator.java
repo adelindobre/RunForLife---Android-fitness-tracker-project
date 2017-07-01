@@ -9,6 +9,7 @@ public class CyclingCalculator {
     public double age;
     public double weight; //kg
     public double height; //cm
+    public double total_distance; //km
     public double total_time; //minutes
     public double current_time; //minutes
     public double level;
@@ -19,12 +20,13 @@ public class CyclingCalculator {
     public CyclingCalculator(){}
 
     public void setInitialParameters(String gender, double age, double weight, double height,
-                                     double time, double level){
+                                     double distance, double time, double level){
         this.gender = gender;
         this.age = age;
         this.weight = weight; //kg
         this.height = height; //cm
         this.total_time = time; //minutes
+        this.total_distance = distance; //km
         this.level = level;
     }
 

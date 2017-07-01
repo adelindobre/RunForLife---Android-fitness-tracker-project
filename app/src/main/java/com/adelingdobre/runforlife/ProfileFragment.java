@@ -175,11 +175,18 @@ public class ProfileFragment extends Fragment {
                 heightInfo = height.getText().toString();
                 heartRateInfo = heartRate.getText().toString();
 
-                calculator.initParameters(gender, Double.parseDouble(ageInfo), Double.parseDouble(weightInfo),
-                        Double.parseDouble(heightInfo), activitySpinner.getSelectedItemPosition());
-                calculator.setDailyCalories();
-
+                if(ageInfo.compareTo("") != 0 && gender.compareTo("") != 0 &&
+                        weightInfo.compareTo("") != 0 && heightInfo.compareTo("") != 0)
+                {
+                    calculator.initParameters(gender, Double.parseDouble(ageInfo), Double.parseDouble(weightInfo),
+                            Double.parseDouble(heightInfo), activitySpinner.getSelectedItemPosition());
+                    calculator.setDailyCalories();
+                } else {
+                    calculator.daily_calories = 0;
+                    toastIt("Complete your profile");
+                }
                 calories.setText(vf.formatCalories(calculator.daily_calories));
+
                 db.updateInfo(user.getEmail(), gender, ageInfo, weightInfo, heightInfo, heartRateInfo,
                         Double.toString(calculator.daily_calories));
             }
@@ -187,6 +194,12 @@ public class ProfileFragment extends Fragment {
 
         return view;
     }
+
+    private void toastIt(String message){
+        Toast.makeText(getActivity(), message,
+                Toast.LENGTH_SHORT).show();
+    }
+
 
     @Override
     public void onActivityCreated(Bundle savedStateInstance){

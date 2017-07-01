@@ -47,7 +47,7 @@ public class RunningCalculator {
     }
 
     public void setInitialParameters(double age, double weight, double height, double heartrate, double treadmill,
-                                     String gender){
+                                     double total_distance, double total_time, String gender){
         //distance in km, time in min
         //weight in kg, height in cm
         this.age = age;
@@ -56,6 +56,8 @@ public class RunningCalculator {
         this.heartrate = heartrate;
         this.treadmill = treadmill;
         this.gender = gender;
+        this.total_distance = total_distance;
+        this.total_time = total_time;
         grossCalculator.setInitialParameters(this.gender, this.age, this.weight, this.height);
     }
 
