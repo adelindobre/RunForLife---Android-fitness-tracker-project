@@ -327,7 +327,6 @@
                                 android:layout_height="wrap_content"
                                 android:layout_below="@+id/gender_text"
                                 android:layout_centerHorizontal="true"
-                                android:layout_marginBottom="40dp"
                                 android:layout_marginLeft="30dp"
                                 android:layout_marginRight="30dp"
                                 android:layout_marginTop="5dp"
@@ -351,6 +350,85 @@
                                     android:textColor="@color/textColorPrimary" />
 
                             </RadioGroup>
+
+                        </RelativeLayout>
+
+                        <ProgressBar
+                            android:id="@+id/id_progressBar_card7"
+                            style="@style/ProgressBarCard"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/gender_section"
+                            android:indeterminate="true"
+                            android:indeterminateTint="@color/colorCardBackground"
+                            android:max="100"
+                            android:progress="0" />
+
+                        <RelativeLayout
+                            android:id="@+id/activity_section"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/id_progressBar_card7"
+                            android:layout_margin="10dp">
+
+                            <TextView
+                                android:id="@+id/activity_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Activity Level"
+                                android:textColor="@color/textColorPrimary" />
+
+                            <Spinner
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/activitySpinner"
+                                android:layout_below="@+id/activity_text"
+                                android:layout_gravity="center_horizontal"
+                                android:backgroundTint="@color/app_primary"
+                                android:popupBackground="@color/colorTrackBackground" />
+
+                        </RelativeLayout>
+
+                        <ProgressBar
+                            android:id="@+id/id_progressBar_card8"
+                            style="@style/ProgressBarCard"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/activity_section"
+                            android:indeterminate="true"
+                            android:indeterminateTint="@color/colorCardBackground"
+                            android:max="100"
+                            android:progress="0" />
+
+                        <RelativeLayout
+                            android:id="@+id/calories_section"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/id_progressBar_card8"
+                            android:layout_margin="10dp">
+
+                            <TextView
+                                android:id="@+id/calories_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Calories per day"
+                                android:textColor="@color/textColorPrimary" />
+
+                            <TextView
+                                android:id="@+id/calories_info"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/calories_text"
+                                android:layout_marginBottom="40dp"
+                                android:layout_marginTop="2dp"
+                                android:backgroundTint="@android:color/transparent"
+                                android:hint="Daily Caloric Expenditure"
+                                android:inputType="number"
+                                android:textAlignment="textStart"
+                                android:textColor="@color/textColorSecondary"
+                                android:textColorHint="@color/textColorSecondary"
+                                android:textSize="15dp"
+                                ></TextView>
 
                         </RelativeLayout>
 

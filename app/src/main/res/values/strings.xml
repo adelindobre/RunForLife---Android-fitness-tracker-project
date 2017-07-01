@@ -183,5 +183,12 @@
         <item>bmx or mountain</item>
         <item>unicycling</item>
     </string-array>
+    <string-array name="activity_level">
+        <item>Sedentary</item>
+        <item>Lightly Active</item>
+        <item>Moderately Active</item>
+        <item>Very Active</item>
+        <item>Extremely Active</item>
+    </string-array>
 
 </resources>

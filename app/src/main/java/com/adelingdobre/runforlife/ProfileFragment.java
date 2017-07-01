@@ -19,6 +19,7 @@ import android.graphics.BitmapFactory;
 
 import android.provider.MediaStore;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -26,6 +27,7 @@ import android.widget.RadioButton;
 import android.os.Environment;
 
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +40,7 @@ import java.net.URL;
 import facebook_utils.UserModel;
 import utils.User;
 import utils.UsersDB;
+import utils.ValueFormatter;
 
 
 public class ProfileFragment extends Fragment {
@@ -55,9 +58,15 @@ public class ProfileFragment extends Fragment {
     public EditText weight;
     public EditText height;
     public EditText heartRate;
+    public TextView calories;
+    public Spinner activitySpinner;
+
+    public DailyCalculator calculator;
 
     public String gender;
     public String ageInfo, weightInfo, heightInfo, heartRateInfo;
+
+    ValueFormatter vf;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -77,6 +86,8 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        calculator = new DailyCalculator();
+        vf = new ValueFormatter(getActivity());
     }
 
     @Override
@@ -109,6 +120,12 @@ public class ProfileFragment extends Fragment {
         cancelButton = (Button)view.findViewById(R.id.cancel_button);
         male = (RadioButton)view.findViewById(R.id.male_button);
         female = (RadioButton)view.findViewById(R.id.female_button);
+        calories = (TextView)view.findViewById(R.id.calories_info);
+        activitySpinner = (Spinner)view.findViewById(R.id.activitySpinner);
+
+        ArrayAdapter<CharSequence> activityAdapter = ArrayAdapter.createFromResource(getActivity(), R.array.activity_level, R.layout.spinner_item2);
+        activityAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        activitySpinner.setAdapter(activityAdapter);
 
         name.setText(user.getUsername());
         mail.setText(user.getEmail());
@@ -116,7 +133,6 @@ public class ProfileFragment extends Fragment {
             imageView.setImageURI(Uri.parse(user.getPicture()));
         else
             imageView.setImageResource(R.drawable.user);
-
 
         if(db.emailExists(user.getEmail())){
             profile = db.getUserByEmail(user.getEmail());
@@ -135,6 +151,8 @@ public class ProfileFragment extends Fragment {
                 height.setText(profile.getHeight());
             if(profile.getHeartRate() != null)
                 heartRate.setText(profile.getHeartRate());
+            if(profile.getCalories() != null)
+                calories.setText(vf.formatCalories(Double.parseDouble(profile.getCalories())));
         }else{
             user.setTag("facebook");
             db.insertFullProfile(user);
@@ -157,7 +175,13 @@ public class ProfileFragment extends Fragment {
                 heightInfo = height.getText().toString();
                 heartRateInfo = heartRate.getText().toString();
 
-                db.updateInfo(user.getEmail(), gender, ageInfo, weightInfo, heightInfo, heartRateInfo);
+                calculator.initParameters(gender, Double.parseDouble(ageInfo), Double.parseDouble(weightInfo),
+                        Double.parseDouble(heightInfo), activitySpinner.getSelectedItemPosition());
+                calculator.setDailyCalories();
+
+                calories.setText(vf.formatCalories(calculator.daily_calories));
+                db.updateInfo(user.getEmail(), gender, ageInfo, weightInfo, heightInfo, heartRateInfo,
+                        Double.toString(calculator.daily_calories));
             }
         });
 

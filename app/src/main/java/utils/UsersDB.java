@@ -58,6 +58,8 @@ public class UsersDB {
     public static final String USERS_TAG = "_tag";
     public static final int    USERS_TAG_COL = 10;
 
+    public static final String USERS_CALORIES = "_calories";
+    public static final int    USERS_CALORIES_COL = 11;
 
 
     // CREATE and DROP TABLE statements
@@ -73,7 +75,8 @@ public class UsersDB {
                     USERS_HEIGHT   + " TEXT, "+
                     USERS_HEARTRATE + " TEXT, "+
                     USERS_AGE      + " TEXT, "+
-                    USERS_TAG      + " TEXT);";
+                    USERS_TAG      + " TEXT,"+
+                    USERS_CALORIES + " TEXT);";
 
     public static final String DROP_USERS_TABLE =
             "DROP TABLE IF EXISTS " + USERS_TABLE;
@@ -187,7 +190,9 @@ public class UsersDB {
                         cursor.getString(USERS_HEIGHT_COL),
                         cursor.getString(USERS_HEARTRATE_COL),
                         cursor.getString(USERS_AGE_COL),
-                        cursor.getString(USERS_TAG_COL));
+                        cursor.getString(USERS_TAG_COL),
+                        cursor.getString(USERS_CALORIES_COL));
+
                 return user;
             }
             catch(Exception e) {
@@ -240,7 +245,7 @@ public class UsersDB {
         cv.put(USERS_HEARTRATE, "");
         cv.put(USERS_AGE, "");
         cv.put(USERS_TAG, "");
-
+        cv.put(USERS_CALORIES, "");
 
         this.openWriteableDB();
         long rowID = db.insert(USERS_TABLE, null, cv);
@@ -264,13 +269,15 @@ public class UsersDB {
         return rowID;
     }
 
-    public int updateInfo(String email, String gender, String age, String weight, String height, String heartRate){
+    public int updateInfo(String email, String gender, String age,
+                          String weight, String height, String heartRate, String calories){
         ContentValues data=new ContentValues();
         data.put(USERS_GENDER, gender);
         data.put(USERS_AGE, age);
         data.put(USERS_WEIGHT, weight);
         data.put(USERS_HEIGHT, height);
         data.put(USERS_HEARTRATE, heartRate);
+        data.put(USERS_CALORIES, calories);
         String selection = USERS_EMAIL  + " = ?";
         String[] selectionArgs = {email};
         this.openWriteableDB();

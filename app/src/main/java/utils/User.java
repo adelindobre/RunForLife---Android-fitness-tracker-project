@@ -15,11 +15,12 @@ public class User {
     private String heartRate;
     private String age;
     private String tag;
+    private String calories;
 
-    public User(){
-    }
+    public User(){}
+
     public User(String aUser, String aPass, String amail, String picture, String gender,
-                String weight, String height, String heartRate, String age, String tag){
+                String weight, String height, String heartRate, String age, String tag, String calories){
         this.username = aUser;
         this.password = aPass;
         this.email = amail;
@@ -30,6 +31,7 @@ public class User {
         this.heartRate = heartRate;
         this.age = age;
         this.tag = tag;
+        this.calories = calories;
     }
 
     public User(String aUser, String aPass, String amail){
@@ -54,6 +56,7 @@ public class User {
     public String getWeight(){ return weight; }
     public String getHeight(){ return height; }
     public String getHeartRate(){ return heartRate; }
+    public String getCalories() { return calories; }
 
 
     public void setUsername(String username) {
@@ -80,4 +83,5 @@ public class User {
         this.age = age;
     }
     public void setTag(String tag) { this.tag = tag; }
+    public void setCalories(String calories) { this.calories = calories; }
 }
