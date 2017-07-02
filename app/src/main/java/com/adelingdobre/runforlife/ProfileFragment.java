@@ -151,7 +151,7 @@ public class ProfileFragment extends Fragment {
                 height.setText(profile.getHeight());
             if(profile.getHeartRate() != null)
                 heartRate.setText(profile.getHeartRate());
-            if(profile.getCalories() != null)
+            if(profile.getCalories() != null && profile.getCalories().compareTo("") != 0)
                 calories.setText(vf.formatCalories(Double.parseDouble(profile.getCalories())));
         }else{
             user.setTag("facebook");
